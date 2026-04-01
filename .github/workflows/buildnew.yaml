@@ -67,6 +67,7 @@ jobs:
           git clone https://github.com/AOMediaCodec/oac.git
           git clone https://gitlab.xiph.org/xiph/opus-tools.git
           git clone https://gitlab.xiph.org/xiph/opusfile.git
+          cd flac && dir
 
       - name: Setup devcmd
         uses: ilammy/msvc-dev-cmd@v1

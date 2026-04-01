@@ -1,1 +1,3 @@
 OAC binary github build test
+UPDATE: Cannot build oac with opus-tools lib because opus-tools requires opus.h include but it has been renamed to oac.h insted
+Changed to build oac_demo instead.

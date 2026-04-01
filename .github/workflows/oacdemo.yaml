@@ -73,6 +73,7 @@ jobs:
       - name: Prepare upload
         run: |
           mkdir "oac-demo\win32", "oac-demo\x64"
+          dir "x64\Release\ALL_BUILD\"
           copy "lib\oac\_build\x64\Release\ALL_BUILD\*.exe" "oac-demo\x64"
 
       - name: Upload artifacts

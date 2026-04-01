@@ -68,6 +68,8 @@ jobs:
           git clone https://gitlab.xiph.org/xiph/opus-tools.git
           git clone https://gitlab.xiph.org/xiph/opusfile.git
           cd flac && dir
+          cd .. && cd ogg && dir
+          cd .. && cd libopusenc && dir
 
       - name: Setup devcmd
         uses: ilammy/msvc-dev-cmd@v1
@@ -88,7 +90,7 @@ jobs:
 
       - name: Prepare ogg
         run: |
-          cd "lib\libogg"
+          cd "lib\ogg"
           mkdir "_build" && cd "_build"
           mkdir "Win32" && cd "Win32"
           cmake ${{ env.CMAKE_GENERATOR_X86 }} ${{ env.CMAKE_COMMON_DEFINES }} ..\..\

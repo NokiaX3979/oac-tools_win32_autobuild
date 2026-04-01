@@ -73,10 +73,7 @@ jobs:
       - name: Prepare upload
         run: |
           mkdir "oac-demo\win32", "oac-demo\x64"
-          copy "lib\opus\_build\Win32\Release\oac_*.exe" "oac-demo\win32"
-          copy "lib\opus-tools\win32\VS2015\Win32\Release\oac*.exe" "oac-demo\win32"
           copy "lib\opus\_build\x64\Release\oac_*.exe" "oac-demo\x64"
-          copy "lib\opus-tools\win32\VS2015\x64\Release\oac*.exe" "oac-demo\x64"
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v7

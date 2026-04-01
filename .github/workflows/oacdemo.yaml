@@ -73,7 +73,7 @@ jobs:
       - name: Prepare upload
         run: |
           mkdir "oac-demo\win32", "oac-demo\x64"
-          copy "lib\oac\_build\x64\Release\*.exe" "oac-demo\x64"
+          copy "lib\oac\_build\x64\Release\ALL_BUILD\*.exe" "oac-demo\x64"
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v7
@@ -81,8 +81,3 @@ jobs:
           name: oac-demo
           path: oac-demo
           compression-level: 9
-
-      - name: Generate build provenace attestations
-        uses: actions/attest@v4
-        with:
-          subject-path: oac-demo/**

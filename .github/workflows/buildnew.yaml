@@ -24,8 +24,8 @@ jobs:
       OGG_MSBUILD_CMD_X86: "/maxcpucount /property:Configuration=Release,Platform=Win32 /target:ogg"
       OGG_MSBUILD_CMD_X64: "/maxcpucount /property:Configuration=Release,Platform=x64   /target:ogg"
 
-      OPUS_SOL_FILE: Opus.sln
-      OPUS_GIT_TAG: v1.6.1
+      OPUS_SOL_FILE: oac.sln
+      #OPUS_GIT_TAG: v1.6.1
       OPUS_CMAKE: "-DOPUS_BUILD_PROGRAMS=ON -DOPUS_DEEP_PLC=ON -DOPUS_DRED=ON -DOPUS_OSCE=ON -DOPUS_STATIC_RUNTIME=ON"
       OPUS_MSBUILD_CMD_X86: "/maxcpucount /property:Configuration=Release,Platform=Win32"
       OPUS_MSBUILD_CMD_X64: "/maxcpucount /property:Configuration=Release,Platform=x64"
@@ -108,6 +108,8 @@ jobs:
           mkdir "_build" && cd "_build"
           mkdir "Win32" && cd "Win32"
           cmake ${{ env.CMAKE_GENERATOR_X86 }} ${{ env.CMAKE_COMMON_DEFINES }} ${{ env.OPUS_CMAKE }} ..\..\
+          dir
+          dir D:/a/oac-tools_win32_autobuild/oac-tools_win32_autobuild/lib/oac/_build/x64
           msbuild ${{ env.OPUS_SOL_FILE }} ${{ env.OPUS_MSBUILD_CMD_X86 }}
           cd ..
           mkdir "x64" && cd "x64"

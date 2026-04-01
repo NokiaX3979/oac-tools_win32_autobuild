@@ -16,8 +16,8 @@ jobs:
     runs-on: windows-latest
 
     env:
-      CMAKE_GENERATOR_X86: "-G \"Visual Studio 17 2022\" -A Win32"
-      CMAKE_GENERATOR_X64: "-G \"Visual Studio 17 2022\" -A x64"
+      CMAKE_GENERATOR_X86: "-G \"Visual Studio 16 2019\" -A Win32"
+      CMAKE_GENERATOR_X64: "-G \"Visual Studio 16 2019\" -A x64"
       CMAKE_COMMON_DEFINES: "-DCMAKE_TOOLCHAIN_FILE=\"${{ github.workspace }}/src/msvc_flags.cmake\""
 
       OGG_SOL_FILE: ogg.sln
@@ -57,9 +57,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: Checkout submodules
+      - name: Clone repo
         run: |
-          git submodule update --init --remote --recursive
+          mkdir lib && cd lib
+          git clone https://github.com/xiph/flac.git
+          git clone https://gitlab.xiph.org/xiph/ogg.git
+          git clone https://gitlab.xiph.org/xiph/libopusenc.git
+          git clone https://github.com/AOMediaCodec/oac.git
+          git clone https://gitlab.xiph.org/xiph/opus-tools.git
+          git clone https://gitlab.xiph.org/xiph/opusfile.git
 
       - name: Setup devcmd
         uses: ilammy/msvc-dev-cmd@v1
@@ -90,9 +96,9 @@ jobs:
           cmake ${{ env.CMAKE_GENERATOR_X64 }} ${{ env.CMAKE_COMMON_DEFINES }} ..\..\
           msbuild ${{ env.OGG_SOL_FILE }} ${{ env.OGG_MSBUILD_CMD_X64 }}
 
-      - name: Prepare opus
+      - name: Prepare OAC
         run: |
-          cd "lib\opus"
+          cd "lib\oac"
           git checkout tags/${{ env.OPUS_GIT_TAG }}
           & .\autogen.bat
           mkdir "_build" && cd "_build"

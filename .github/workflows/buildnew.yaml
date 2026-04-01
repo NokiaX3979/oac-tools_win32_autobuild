@@ -59,7 +59,8 @@ jobs:
 
       - name: Clone repo
         run: |
-          mkdir lib && cd lib
+          cd lib
+          dir
           git clone https://github.com/xiph/flac.git
           git clone https://gitlab.xiph.org/xiph/ogg.git
           git clone https://gitlab.xiph.org/xiph/libopusenc.git
